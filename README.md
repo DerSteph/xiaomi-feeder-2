@@ -1,5 +1,8 @@
 # Xiaomi Smart Pet Food Feeder 2 Controller (`xiaomi.feeder.iv2001`)
 
+[![Test](https://github.com/DerSteph/xiaomi-feeder-2/actions/workflows/test.yml/badge.svg)](https://github.com/DerSteph/xiaomi-feeder-2/actions/workflows/test.yml)
+[![PyPI](https://img.shields.io/pypi/v/xiaomi-feeder-2)](https://pypi.org/project/xiaomi-feeder-2/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/xiaomi-feeder-2)](https://pypi.org/project/xiaomi-feeder-2/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Built with Google Antigravity](https://img.shields.io/badge/Built%20with-Google%20Antigravity-4285F4?style=flat&logo=google&logoColor=white)](https://deepmind.google)
 

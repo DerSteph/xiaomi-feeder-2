@@ -4,6 +4,9 @@ dynamic = ["version"]
 description = "Python controller and library for Xiaomi Smart Pet Food Feeder 2 (xiaomi.feeder.iv2001) - Home Assistant & CLI ready"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
+authors = [
+    { name = "Stephan Höhn", email = "me@steph.ovh" },
+]
 requires-python = ">=3.10"
 keywords = [
     "xiaomi",
@@ -15,6 +18,7 @@ keywords = [
     "iot",
     "smart-home",
 ]
+
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -31,6 +35,13 @@ dependencies = [
     "python-miio>=0.5.12",
     "python-dotenv>=1.0.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/DerSteph/xiaomi-feeder-2"
+Documentation = "https://github.com/DerSteph/xiaomi-feeder-2#readme"
+Repository = "https://github.com/DerSteph/xiaomi-feeder-2.git"
+Issues = "https://github.com/DerSteph/xiaomi-feeder-2/issues"
+Changelog = "https://github.com/DerSteph/xiaomi-feeder-2/releases"
 
 [project.optional-dependencies]
 cloud = [
