@@ -1,0 +1,64 @@
+[project]
+name = "xiaomi-feeder"
+version = "0.2.0"
+description = "Python controller and library for Xiaomi Smart Pet Food Feeder 2 (xiaomi.feeder.iv2001) - Home Assistant & CLI ready"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+requires-python = ">=3.10"
+keywords = [
+    "xiaomi",
+    "miio",
+    "miot",
+    "pet-feeder",
+    "home-assistant",
+    "hacs",
+    "iot",
+    "smart-home",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Home Automation",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "python-miio>=0.5.12",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+cloud = [
+    "micloud>=0.6.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]
+
+[project.scripts]
+feeder = "xiaomi_feeder.cli:main"
+xiaomi-feeder = "xiaomi_feeder.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/xiaomi_feeder"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/xiaomi_feeder",
+    "README.md",
+    "LICENSE",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+asyncio_mode = "auto"
