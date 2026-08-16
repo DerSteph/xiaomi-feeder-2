@@ -3,22 +3,23 @@ name: Publish to PyPI
 on:
   release:
     types: [ published ]
-  workflow_dispatch:  # Allows manual test triggers from the Actions tab
 
 permissions:
   contents: read
 
 jobs:
   pypi-publish:
-    name: Build and publish Python distribution to TestPyPI
+    name: Build and publish Python distribution to PyPI
     runs-on: ubuntu-latest
     permissions:
-      id-token: write      # Mandatory for PyPI/TestPyPI Trusted Publishing (OIDC)
+      id-token: write      # Mandatory for PyPI Trusted Publishing (OIDC)
       contents: read       # To read repository contents
       attestations: write  # For SLSA build provenance attestations
 
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        fetch-depth: 0
 
     - name: Set up Python
       uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
@@ -34,8 +35,7 @@ jobs:
       run: |
         uv build
 
-    - name: Publish package distributions to TestPyPI
+    - name: Publish package distributions to PyPI
       uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
       with:
-        repository-url: https://test.pypi.org/legacy/
         attestations: true
