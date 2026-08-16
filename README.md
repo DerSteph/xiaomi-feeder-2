@@ -21,6 +21,21 @@ Communicates directly and locally with the feeder over your LAN using Xiaomi's M
 
 ---
 
+## 💡 Why This Project Exists (Motivation)
+
+Generic Xiaomi integrations for Home Assistant (such as *Xiaomi Miot Auto* / generic MIoT components) attempt to support thousands of devices with auto-generated templates. However, for the **Xiaomi Smart Pet Food Feeder 2 (`xiaomi.feeder.iv2001`)**, this created serious usability and safety issues:
+
+1. **The Overfeeding Problem (Portions vs. Grams)**:
+   Generic integrations often treat feeding inputs as grams or pass ambiguous numbers to the MIoT action. On the Feeder 2 hardware, the dispense parameter is strictly **portions** (1 portion = 180° rotor rotation ≈ 10–12g). Entering "25" intended as 25 grams resulted in dispensing 25 full portions (~300 grams!), dangerously overflowing the bowl.
+2. **Ambiguous Generic Entities**:
+   Many distinct hardware properties were generated with generic names like `status` or obscure property numbers, leaving users in the dark about what each entity represented.
+3. **Spec Reverse-Engineering & Validation**:
+   Certain MIoT template properties (such as desiccant countdown) return static dummy `0` values over local LAN because Xiaomi calculates them exclusively in their cloud UI. Meanwhile, valuable hardware capabilities—such as the offline RTC EEPROM schedule, scale tare calibration, live motor progress tracking, and food pile/heap detection—were unhandled.
+4. **100% Reliable Local Control**:
+   This library was built from the ground up by testing and validating every single register (`SIID`, `PIID`, `AIID`) directly against real feeder hardware. It serves as a reliable, fully local Python core to power a dedicated, native **Home Assistant / HACS** integration.
+
+---
+
 ## Setup & Prerequisites
 
 ### 1. Requirements
@@ -209,15 +224,15 @@ uv run feeder raw-set 3 1 true
 
 ### Install from PyPI
 ```bash
-pip install xiaomi-feeder
+pip install xiaomi-feeder-2
 # or with uv
-uv add xiaomi-feeder
+uv add xiaomi-feeder-2
 ```
 
 ### Python API Usage (Synchronous)
 
 ```python
-from xiaomi_feeder import XiaomiFeeder
+from xiaomi_feeder_2 import XiaomiFeeder
 
 # Initialize connection
 feeder = XiaomiFeeder(ip="192.168.1.100", token="your_32_character_token")
@@ -242,7 +257,7 @@ feeder.calibrate_scale()
 
 ```python
 import asyncio
-from xiaomi_feeder import XiaomiFeeder, XiaomiFeederError
+from xiaomi_feeder_2 import XiaomiFeeder, XiaomiFeederError
 
 async def main():
     feeder = XiaomiFeeder(ip="192.168.1.100", token="your_32_character_token")
@@ -265,9 +280,9 @@ asyncio.run(main())
 To use this library in a custom component manifest (`custom_components/<domain>/manifest.json`):
 ```json
 {
-  "domain": "xiaomi_feeder",
+  "domain": "xiaomi_feeder_2",
   "name": "Xiaomi Smart Pet Food Feeder 2",
-  "requirements": ["xiaomi-feeder>=0.2.0"]
+  "requirements": ["xiaomi-feeder-2>=0.2.0"]
 }
 ```
 

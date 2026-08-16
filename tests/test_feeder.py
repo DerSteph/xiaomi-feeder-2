@@ -4,7 +4,7 @@ import json
 from unittest.mock import MagicMock, patch
 import pytest
 
-from xiaomi_feeder import (
+from xiaomi_feeder_2 import (
     FeederAIID,
     FeederPIID,
     FeederSIID,
@@ -14,29 +14,29 @@ from xiaomi_feeder import (
     XiaomiFeederDeviceError,
     XiaomiFeederError,
 )
-from xiaomi_feeder.cli import create_parser, format_schedule_output, format_status_output, main
-import xiaomi_feeder
+from xiaomi_feeder_2.cli import create_parser, format_schedule_output, format_status_output, main
+import xiaomi_feeder_2
 
 
 @pytest.fixture
 def mock_device():
-    with patch("xiaomi_feeder.client.Device") as mock_dev_cls:
+    with patch("xiaomi_feeder_2.client.Device") as mock_dev_cls:
         mock_instance = MagicMock()
         mock_dev_cls.return_value = mock_instance
         yield mock_instance
 
 
 def test_package_exports():
-    """Verify that xiaomi_feeder exports all public classes and constants."""
-    assert hasattr(xiaomi_feeder, "XiaomiFeeder")
-    assert hasattr(xiaomi_feeder, "FeederStatus")
-    assert hasattr(xiaomi_feeder, "ScheduleMeal")
-    assert hasattr(xiaomi_feeder, "SchedulePlan")
-    assert hasattr(xiaomi_feeder, "XiaomiFeederError")
-    assert hasattr(xiaomi_feeder, "FeederSIID")
-    assert hasattr(xiaomi_feeder, "FeederPIID")
-    assert hasattr(xiaomi_feeder, "FeederAIID")
-    assert xiaomi_feeder.__version__ == "0.2.0"
+    """Verify that xiaomi_feeder_2 exports all public classes and constants."""
+    assert hasattr(xiaomi_feeder_2, "XiaomiFeeder")
+    assert hasattr(xiaomi_feeder_2, "FeederStatus")
+    assert hasattr(xiaomi_feeder_2, "ScheduleMeal")
+    assert hasattr(xiaomi_feeder_2, "SchedulePlan")
+    assert hasattr(xiaomi_feeder_2, "XiaomiFeederError")
+    assert hasattr(xiaomi_feeder_2, "FeederSIID")
+    assert hasattr(xiaomi_feeder_2, "FeederPIID")
+    assert hasattr(xiaomi_feeder_2, "FeederAIID")
+    assert xiaomi_feeder_2.__version__ == "0.2.0"
 
 
 def test_feeder_init_validation():
