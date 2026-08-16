@@ -835,7 +835,6 @@ wheels = [
 
 [[package]]
 name = "xiaomi-feeder-2"
-version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "python-dotenv" },

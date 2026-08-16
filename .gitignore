@@ -12,6 +12,7 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+src/xiaomi_feeder_2/_version.py
 downloads/
 eggs/
 .eggs/

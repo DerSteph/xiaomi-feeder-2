@@ -1,6 +1,6 @@
 [project]
 name = "xiaomi-feeder-2"
-version = "0.2.0"
+dynamic = ["version"]
 description = "Python controller and library for Xiaomi Smart Pet Food Feeder 2 (xiaomi.feeder.iv2001) - Home Assistant & CLI ready"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
@@ -47,8 +47,15 @@ xiaomi-feeder = "xiaomi_feeder_2.cli:main"
 xiaomi-feeder-2 = "xiaomi_feeder_2.cli:main"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+fallback-version = "0.2.0"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/xiaomi_feeder_2/_version.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/xiaomi_feeder_2"]

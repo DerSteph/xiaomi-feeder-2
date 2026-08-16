@@ -36,7 +36,7 @@ def test_package_exports():
     assert hasattr(xiaomi_feeder_2, "FeederSIID")
     assert hasattr(xiaomi_feeder_2, "FeederPIID")
     assert hasattr(xiaomi_feeder_2, "FeederAIID")
-    assert xiaomi_feeder_2.__version__ == "0.2.0"
+    assert isinstance(xiaomi_feeder_2.__version__, str) and len(xiaomi_feeder_2.__version__) > 0
 
 
 def test_feeder_init_validation():

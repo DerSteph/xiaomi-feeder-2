@@ -18,7 +18,15 @@ from .exceptions import (
 )
 from .models import FeederStatus, ScheduleMeal, SchedulePlan
 
-__version__ = "0.2.0"
+try:
+    from ._version import __version__
+except ImportError:
+    try:
+        from importlib.metadata import version
+
+        __version__ = version("xiaomi-feeder-2")
+    except Exception:
+        __version__ = "0.2.0"
 
 __all__ = [
     "XiaomiFeeder",
